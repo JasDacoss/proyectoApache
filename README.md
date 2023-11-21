@@ -29,3 +29,11 @@ services:
 
 Mapeamos el puerto 80 al 80 porque vamos a usar un navegador web y la configuración de apache en un nuevo volumen.
 
+## Configuración DNS
+Lo que haremos en este apartado es configurar un servidor DNS que nos resuelva dos dominios:
++ www.fabulasoscuras.com
+- www.fabulasmaravillosas.com
+
+Como en una práctica anterior hemos configurado un servidor DNS, voy a usarlo y copiar la configuración para posteriormente adaptarla a nuestros servicios.
+
+

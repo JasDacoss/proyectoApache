@@ -5,6 +5,9 @@ services:
     image: php:7.4-apache
     ports:
       - '80:80'
+    networks:
+      bind9_subnet:
+        ipv4_address: 10.0.1.250
     volumes:
       - ./html:/var/www/html 
       - ./confApache:/etc/apache2 
