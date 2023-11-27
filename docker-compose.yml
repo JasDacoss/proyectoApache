@@ -1,14 +1,31 @@
-version: '3.9'
 services:
-  asir_apache-php: 
+  web:
     container_name: asir_apache
-    image: php:7.4-apache
+    image: httpd:latest
     ports:
-      - '8000:8000'
-      - '443:443'
-    networks:
-      bind9_subnet:
-        ipv4_address: 10.0.1.250
+      - "80:80"
     volumes:
-      - ./html:/var/www/html 
-      - ./confApache:/etc/apache2 
+      - ./paginas:/usr/local/apache2/htdocs
+      - ./confApache:/usr/local/apache2/conf
+    networks:
+      mi_red:
+        ipv4_address: 10.1.0.50
+  bind9:
+    container_name: asir_bind9
+    image: ubuntu/bind9
+    platform: linux/amd64
+    ports:
+      - 53:53
+    networks:
+      mi_red:
+        ipv4_address: 10.1.0.2
+    volumes:
+      - ./conf:/etc/bind
+      - ./zonas:/var/lib/bind
+networks:
+  mi_red:
+    ipam: 
+      driver: default
+      config:
+        - subnet: 10.1.0.0/16
+          gateway: 10.1.0.1 
